@@ -2,7 +2,7 @@ import streamlit as st
 import asyncio
 import datetime
 from agents import Runner
-from main import master_agent, config
+from main import master_agent, config,study_plan_agent, quiz_agent, study_advice_agent
 from model import StudentContext, StudyPlanOutput, QuizOutput, SummaryOutput
 
 # --- App Configuration ---
@@ -55,7 +55,7 @@ if generate:
     prompt = (
         f"You are a master agent. The student named {name} is preparing for {subject} with an exam on {exam_date}. "
         f"Their weak topics are: {', '.join(weak_topics)}. Create a {total_days}-day study plan. Then generate a quiz on "
-        f"at least one weak topic. Finally, give personalized advice based on their preparation status."
+        f"at least one weak topic. Finally, give personalized advice based on their preparation status. you must call all three agents:{[study_plan_agent, quiz_agent, study_advice_agent]} "
     )
 
     with st.spinner("🤖 Thinking... Agents at work..."):
