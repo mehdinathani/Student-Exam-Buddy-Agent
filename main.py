@@ -49,7 +49,7 @@ study_plan_agent = Agent[StudentContext](
 
 quiz_agent = Agent[StudentContext](
     name="Quiz Generator Agent",
-    instructions="You generate a short quiz for students based on a selected topic.",
+    instructions=f"You generate a short quiz for students based on a selected topic from {StudentContext}.",
     model=model,
     tools=[generate_quiz],
     output_type=QuizOutput
@@ -57,16 +57,15 @@ quiz_agent = Agent[StudentContext](
 
 study_advice_agent = Agent[StudentContext](
     name="Study Advice Agent",
-    # Crucially updated instruction: Tell the agent to use the tool's output as the 'summary'.
     instructions=(
-        "You provide personalized study advice based on the student's context including exam date and weak topics. "
-        "You must use the `study_advice` tool to get the advice. "
-        "Once you have the advice from the tool, provide it as the 'summary' field in the SummaryOutput."
+        f"You must use the `study_advice` tool to respond with personalized advice based on the {StudentContext} context. "
+        "Do not attempt to respond directly. Always call the tool to generate the `summary`."
     ),
     model=model,
     tools=[study_advice],
     output_type=SummaryOutput
 )
+
 
 master_agent = Agent[StudentContext](
     name="Master Student Exam Agent",
