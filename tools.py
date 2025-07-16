@@ -32,15 +32,17 @@ async def study_plan(wrapper: RunContextWrapper[StudentContext]) -> str:
     ctx = wrapper.context
     return (
         f"Create a 5-day study plan for {ctx.name} who is preparing for {ctx.subject}."
-        f" The exam is on {ctx.exam_date}. Prioritize weak topics: {', '.join(ctx.weak_topics)}."
+        f"The exam is on {ctx.exam_date}. Prioritize weak topics: {', '.join(ctx.weak_topics)}."
     )
 
 @function_tool
-async def study_advice(wrapper: RunContextWrapper[StudentContext]) -> str:
+async def study_advice(wrapper: RunContextWrapper[StudentContext],request: str = "Give advice") -> str:
+    
     ctx = wrapper.context
     name = ctx.name
     subject = ctx.subject
     weak_topics = ", ".join(ctx.weak_topics)
+    print(f"Generating study advice for {name} on {subject} with weak topics: {weak_topics}")
     
     # Days left until exam
     try:
@@ -74,3 +76,10 @@ def log_tool_call(tool_func):
         print(f"   Kwargs: {kwargs}")
         return await tool_func(*args, **kwargs)
     return wrapper
+
+@function_tool
+def get_student_context(wrapper: RunContextWrapper[StudentContext]) -> StudentContext:
+    """
+    Extracts the StudentContext from the RunContextWrapper.
+    """
+    return wrapper.context
