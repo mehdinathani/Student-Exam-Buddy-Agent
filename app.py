@@ -1,7 +1,7 @@
 import streamlit as st
 import asyncio
 from agents import Runner
-from agents_setup import master_agent, config
+from main import master_agent, config
 from model import StudentContext
 import datetime
 
