@@ -21,7 +21,7 @@ student_context = StudentContext(
 # Configuration
 config = RunConfig(
     model=master_agent.model,
-    model_provider=master_agent.model_provider,
+    
     tracing_disabled=True
 )
 
