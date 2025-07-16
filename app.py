@@ -65,6 +65,7 @@ if generate:
             context=student_context,
             run_config=config
         ))
+    print(f"Result: {result}")
 
     output = result.final_output
     st.success("✅ Results ready!")
