@@ -41,7 +41,7 @@ tools = [study_plan, generate_quiz, summarize_notes, study_advice]
 
 study_plan_agent = Agent[StudentContext](
     name="Study Planner Agent",
-    instructions="You create a structured study plan for students based on their subject, exam date, and weak topics.",
+    instructions=f"You create a structured study plan for students based on their subject, exam date, and weak topics from {StudentContext} but topics should be detailed.",
     model=model,
     tools=[study_plan],
     output_type=StudyPlanOutput

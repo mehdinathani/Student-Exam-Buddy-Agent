@@ -32,7 +32,7 @@ async def study_plan(wrapper: RunContextWrapper[StudentContext]) -> str:
     ctx = wrapper.context
     return (
         f"Create a 5-day study plan for {ctx.name} who is preparing for {ctx.subject}."
-        f"The exam is on {ctx.exam_date}. Prioritize weak topics: {', '.join(ctx.weak_topics)}."
+        f"The exam is on {ctx.exam_date}. Prioritize weak topics: {', '.join(ctx.weak_topics)} with detailed topics."
     )
 
 @function_tool
@@ -42,7 +42,7 @@ async def study_advice(wrapper: RunContextWrapper[StudentContext],request: str =
     name = ctx.name
     subject = ctx.subject
     weak_topics = ", ".join(ctx.weak_topics)
-    print(f"Generating study advice for {name} on {subject} with weak topics: {weak_topics}")
+    print(f"Create a study advice for {name} on {subject} with weak topics: {weak_topics}")
     
     # Days left until exam
     try:
