@@ -34,6 +34,8 @@ weak_topics_input = st.sidebar.text_area(
 )
 weak_topics = [topic.strip() for topic in weak_topics_input.split(',') if topic.strip()]
 
+mcqs_count = st.sidebar.text_input("required mcqs", "3")
+
 generate = st.sidebar.button("🔍 Generate Plan")
 
 # --- On Generate Click ---
@@ -50,7 +52,7 @@ if generate:
 
     # Prompts for each sub-agent
     study_prompt = f"Create a {total_days}-day study plan that prioritizes the weak topics using {student_context}."
-    quiz_prompt = f"Generate a short quiz on the topic '{weak_topics[0]}' for exam preparation using {student_context} atlease 10 questions."
+    quiz_prompt = f"Generate a short quiz on the topic '{weak_topics[0]}' for exam preparation using {student_context} with {mcqs_count} questions."
     advice_prompt = (
     f"DO NOT explain or respond directly. Just call the `study_advice` tool using the {student_context}. "
     "Return the advice as summary output."
