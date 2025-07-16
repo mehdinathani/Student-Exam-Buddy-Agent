@@ -54,9 +54,9 @@ if generate:
     )
 
     # Prompts for each sub-agent
-    study_prompt = f"Create a {total_days}-day study plan that prioritizes the weak topics."
-    quiz_prompt = f"Generate a short quiz on the topic '{weak_topics[0]}' for exam preparation."
-    advice_prompt = "Give me personalized study advice based on my context."
+    study_prompt = f"Create a {total_days}-day study plan that prioritizes the weak topics from {student_context}."
+    quiz_prompt = f"Generate a short quiz on the topic '{weak_topics[0]}' for exam preparation from {student_context}."
+    advice_prompt = f"Give me personalized study advice based on my context from {student_context}."
 
     with st.spinner("Thinking... Agents at work..."):
         study_result = asyncio.run(Runner.run(
