@@ -3,7 +3,7 @@ import asyncio
 import datetime
 from agents import Runner
 from main import master_agent, config
-from model import StudentContext
+from model import StudentContext, StudyPlanOutput, QuizOutput, SummaryOutput
 
 # --- App Configuration ---
 st.set_page_config(
@@ -51,8 +51,12 @@ if generate:
         weak_topics=weak_topics
     )
 
-    # LLM prompt to master agent
-    prompt = f"Create a {total_days}-day study plan, quiz, and give me personalized advice."
+    # Prompt explicitly calls all three agent types
+    prompt = (
+        f"You are a master agent. The student named {name} is preparing for {subject} with an exam on {exam_date}. "
+        f"Their weak topics are: {', '.join(weak_topics)}. Create a {total_days}-day study plan. Then generate a quiz on "
+        f"at least one weak topic. Finally, give personalized advice based on their preparation status."
+    )
 
     with st.spinner("🤖 Thinking... Agents at work..."):
         result = asyncio.run(Runner.run(
