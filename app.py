@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 st.title("📚 Student Exam Buddy")
-st.caption("Built by Mehdi Abbas Nathani • Powered by Gemini + OpenAI Agents SDK")
+st.caption("Built by Mehdi Abbas Nathani!! • Powered by Gemini + OpenAI Agents SDK")
 
 # --- Sidebar Input Form ---
 st.sidebar.header("📝 Enter Exam Context")
