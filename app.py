@@ -34,7 +34,7 @@ weak_topics_input = st.sidebar.text_area(
 )
 weak_topics = [topic.strip() for topic in weak_topics_input.split(',') if topic.strip()]
 
-mcqs_count = st.sidebar.text_input("required mcqs", "3")
+mcqs_count = st.sidebar.number_input("required mcqs", 1, 10, 3)
 
 generate = st.sidebar.button("🔍 Generate Plan")
 
