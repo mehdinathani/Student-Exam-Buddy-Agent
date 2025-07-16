@@ -29,6 +29,8 @@ def summarize_notes(notes: str) -> str:
 
 @function_tool
 async def study_plan(wrapper: RunContextWrapper[StudentContext]) -> str:
+    print(f"🛠️ Tool `study_advice` called with context: {wrapper.context}")
+
     ctx = wrapper.context
     return (
         f"Create a 5-day study plan for {ctx.name} who is preparing for {ctx.subject}."

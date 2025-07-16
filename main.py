@@ -58,13 +58,16 @@ quiz_agent = Agent[StudentContext](
 study_advice_agent = Agent[StudentContext](
     name="Study Advice Agent",
     instructions=(
-        f"You must use the `study_advice` tool to respond with personalized advice based on the {StudentContext} context. "
-        "Do not attempt to respond directly. Always call the tool to generate the `summary`."
+        "You must not generate any response directly. "
+        "You are required to call the `study_advice` tool with the provided context. "
+        "Use the tool's result as the final output. "
+        "Do not say 'OK' or describe what you are doing — just call the tool."
     ),
     model=model,
     tools=[study_advice],
     output_type=SummaryOutput
 )
+
 
 
 master_agent = Agent[StudentContext](
