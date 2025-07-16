@@ -80,31 +80,31 @@ if generate:
             run_config=config
         ))
 
-    st.success("\u2705 Results ready!")
+    st.success("Results ready!")
 
     # --- Display Study Plan ---
     if hasattr(study_result.final_output, 'plan') and study_result.final_output.plan:
-        st.subheader("\ud83d\udcc5 Study Plan")
+        st.subheader("Study Plan")
         for day in study_result.final_output.plan:
             with st.expander(f"Day {day.day}"):
                 for topic in day.topics:
-                    st.markdown(f"\u2705 {topic}")
+                    st.markdown(f"{topic}")
 
     # --- Display Quiz ---
     if hasattr(quiz_result.final_output, 'questions') and quiz_result.final_output.questions:
-        st.subheader("\ud83e\uddea Quiz")
+        st.subheader("Quiz")
         for idx, q in enumerate(quiz_result.final_output.questions):
             st.markdown(f"**Q{idx + 1}:** {q.question}")
-            st.markdown(f"\u27a1\ufe0f **Answer:** {q.answer}")
+            st.markdown(f"**Answer:** {q.answer}")
             st.markdown("---")
 
     # --- Display Study Advice ---
     if hasattr(advice_result.final_output, 'summary') and advice_result.final_output.summary:
-        st.subheader("\ud83d\udca1 Study Advice")
+        st.subheader("Study Advice")
         st.info(advice_result.final_output.summary)
 
     # --- Agent Routing Info ---
-    st.caption(f"\ud83d\udd01 Routed via: study_plan_agent, quiz_agent, study_advice_agent")
+    st.caption(f"Routed via: study_plan_agent, quiz_agent, study_advice_agent")
 
 else:
-    st.info("\ud83d\udc48 Fill in the exam details and press 'Generate Plan' to begin.")
+    st.info("Fill in the exam details and press 'Generate Plan' to begin.")
