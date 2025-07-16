@@ -7,16 +7,18 @@ from model import StudentContext
 
 # --- App Configuration ---
 st.set_page_config(
-    page_title="\ud83d\udcda Student Exam Buddy",
-    page_icon="\ud83e\udde0",
+    page_title="Student Exam Buddy",   # ✅ plain ASCII
+    page_icon=":books:",               # ✅ Streamlit emoji code
     layout="centered"
 )
 
-st.title("\ud83d\udcda Student Exam Buddy")
-st.caption("Built by Mehdi Abbas Nathani!! • Powered by Gemini + OpenAI Agents SDK")
+
+st.title(":books: Student Exam Buddy")
+st.caption("Built by Mehdi Abbas Nathani • Powered by Gemini + OpenAI Agents SDK")
+
 
 # --- Sidebar Input Form ---
-st.sidebar.header("\ud83d\udcdd Enter Exam Context")
+st.sidebar.header("Enter Exam Context")
 
 name = st.sidebar.text_input("Your Name", "Mehdi")
 
@@ -37,7 +39,7 @@ weak_topics = st.sidebar.multiselect(
     default=["Thermodynamics", "Laws of motion"]
 )
 
-generate = st.sidebar.button("\ud83d\udd0d Generate Plan")
+generate = st.sidebar.button("Generate Plan")
 
 # --- On Generate Click ---
 if generate:
@@ -56,7 +58,7 @@ if generate:
     quiz_prompt = f"Generate a short quiz on the topic '{weak_topics[0]}' for exam preparation."
     advice_prompt = "Give me personalized study advice based on my context."
 
-    with st.spinner("\ud83e\udde0 Thinking... Agents at work..."):
+    with st.spinner("Thinking... Agents at work..."):
         study_result = asyncio.run(Runner.run(
             starting_agent=study_plan_agent,
             input=study_prompt,
